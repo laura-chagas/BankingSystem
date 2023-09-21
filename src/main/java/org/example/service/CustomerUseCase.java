@@ -54,4 +54,17 @@ public class CustomerUseCase extends ValidationsInfosCustomer {
     public boolean showAllTransactionsofaSpecificAccount(int idoriginaccount) {
         return transactionController.showAllTransactionsofaSpecificAccount(idoriginaccount);
     }
+
+    public boolean registerNewBankAccount(String accountNumber, Double balance, int customerid) {
+        return bankAccountController.registerNewBankAccount(accountNumber, balance, customerid);
+    }
+
+    public boolean deleteCustomer(String cpfCustomer) {
+        if (checkCpf(cpfCustomer)) {
+            return customerController.deleteCustomer(cpfCustomer);
+        }
+        return false;
+
+    }
+
 }

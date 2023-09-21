@@ -47,11 +47,39 @@ public class CustomerView {
         }
     }
 
+    public static void registerNewAccount() {
+
+        System.out.print("INFORME O NUMERO DA CONTA: ");
+        String accountnumberView = scan.next();
+
+        System.out.print("INFORME O ID DA CONTA: ");
+        int idAccountView = scan.nextInt();
+
+        if ( customerUseCase.registerNewBankAccount(accountnumberView, 0.00, idAccountView)){
+            System.out.println("CONTA BANCÁRIA REGISTRADA COM SUCESSO! ");
+        }else {
+            System.out.println("CAMPOS FORAM PREENCHIDOS ERRADO! ");
+        }
+
+    }
+
+    public static void deleteCustomer(){
+        System.out.print("INFORME SEU CPF: ");
+        String cpfCustomer = scan.next();
+
+       if (customerUseCase.deleteCustomer(cpfCustomer)){
+           System.out.println("CLIENTE DELETADO COM SUCESSO! ");
+       }else {
+           System.out.println("CPF INVÁLIDO! ");
+       }
+
+    }
+
     public static void menuCustomer() {
         int choice;
         do {
             System.out.println("VOCÊ DESEJA: ");
-            System.out.println("[1] Ver saldo         [2] Sacar dinheiro| \n[3] Depositar         [4] Deletar conta| \n[5] PIX         [6] VER TODAS AS SUAS CONTAS| \n[7] VER TODAS AS TRANSAÇÕES         [0] Sair|");
+            System.out.println("[1] Ver saldo         [2] Sacar dinheiro| \n[3] Depositar         [4] Deletar conta| \n[5] PIX         [6] VER TODAS AS SUAS CONTAS| \n[7] VER TODAS AS TRANSAÇÕES         [8] REGISTRAR CONTA BANCÁRIA\n         [0] Sair|");
             choice = scan.nextInt();
             switch (choice) {
                 case 1:
@@ -95,6 +123,9 @@ public class CustomerView {
                     break;
                 case 7:
                     customerUseCase.showAllTransactionsofaSpecificAccount(receiveIdAccount());
+                    break;
+                case 8:
+                    registerNewAccount();
                     break;
                 case 0:
                     return;
